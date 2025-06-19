@@ -1,0 +1,6 @@
+          <?xml version="1.0" encoding="UTF-8"?><TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:ns2="http://www.garmin.com/xmlschemas/UserProfile/v2" xmlns:ns3="http://www.garmin.com/xmlschemas/ActivityExtension/v2" xmlns:ns5="http://www.garmin.com/xmlschemas/ActivityGoals/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd">
+            <Activities>
+              <Activity Sport="workout"><Id>2023-11-06T22:14:37Z</Id><Creator><Name>Amazfit Bip U Pro</Name></Creator><Lap StartTime="2023-11-06T22:14:37Z"><Calories>412.0</Calories><DistanceMeters>0.0</DistanceMeters><Track><Trackpoint><Time>2023-11-06T22:14:37Z</Time></Trackpoint><Trackpoint><Time>2023-11-06T23:06:47Z</Time><Position><LatitudeDegrees>0.00630267</LatitudeDegrees><LongitudeDegrees>-0.01028333</LongitudeDegrees></Position></Trackpoint></Track></Lap></Activity>
+            </Activities>
+            
+          </TrainingCenterDatabase>

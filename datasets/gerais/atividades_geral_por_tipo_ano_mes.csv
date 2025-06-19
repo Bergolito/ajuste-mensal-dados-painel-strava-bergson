@@ -1,0 +1,238 @@
+tipo_atividade,qtd,ano,mes
+Walk,1,2020,2
+Walk,15,2020,3
+Walk,1,2020,4
+Walk,1,2020,7
+Walk,9,2020,8
+Walk,8,2020,9
+Walk,8,2020,10
+Walk,6,2020,11
+Walk,9,2020,12
+Walk,9,2021,1
+Walk,11,2021,2
+Walk,13,2021,3
+Walk,14,2021,4
+Walk,13,2021,5
+Walk,9,2021,6
+Walk,10,2021,7
+Walk,9,2021,8
+Walk,12,2021,9
+Walk,8,2021,10
+Walk,10,2021,11
+Walk,7,2021,12
+Walk,10,2022,1
+Walk,6,2022,2
+Walk,7,2022,3
+Walk,4,2022,4
+Walk,5,2022,5
+Walk,6,2022,8
+Walk,11,2022,9
+Walk,11,2022,10
+Walk,10,2022,11
+Walk,9,2022,12
+Walk,7,2023,1
+Walk,10,2023,2
+Walk,8,2023,3
+Walk,8,2023,4
+Walk,6,2023,5
+Walk,9,2023,6
+Walk,11,2023,7
+Walk,7,2023,8
+Walk,9,2023,9
+Walk,5,2023,10
+Walk,11,2023,11
+Walk,9,2023,12
+Walk,9,2024,1
+Walk,5,2024,2
+Walk,8,2024,3
+Walk,8,2024,4
+Walk,9,2024,5
+Walk,9,2024,6
+Walk,13,2024,7
+Walk,5,2024,8
+Walk,10,2024,9
+Walk,8,2024,10
+Walk,8,2024,11
+Walk,4,2024,12
+Walk,7,2025,1
+Walk,6,2025,2
+Walk,9,2025,3
+Walk,9,2025,4
+Walk,3,2025,5
+Walk,1,2025,6
+Run,1,2020,3
+Run,9,2020,4
+Run,9,2020,5
+Run,6,2020,6
+Run,6,2020,7
+Run,7,2020,8
+Run,8,2020,9
+Run,9,2020,10
+Run,6,2020,11
+Run,7,2020,12
+Run,7,2021,1
+Run,4,2021,2
+Run,3,2021,3
+Run,9,2021,4
+Run,4,2021,5
+Run,4,2021,6
+Run,6,2021,7
+Run,6,2021,8
+Run,4,2021,9
+Run,3,2021,10
+Run,5,2021,11
+Run,4,2021,12
+Run,5,2022,1
+Run,3,2022,2
+Run,2,2022,3
+Run,2,2022,4
+Run,3,2022,5
+Run,3,2022,6
+Run,2,2022,7
+Run,3,2022,8
+Run,8,2022,9
+Run,4,2022,10
+Run,5,2022,11
+Run,8,2022,12
+Run,6,2023,1
+Run,6,2023,2
+Run,6,2023,3
+Run,7,2023,4
+Run,6,2023,5
+Run,6,2023,6
+Run,6,2023,7
+Run,7,2023,8
+Run,9,2023,9
+Run,4,2023,10
+Run,9,2023,11
+Run,6,2023,12
+Run,6,2024,1
+Run,3,2024,2
+Run,6,2024,3
+Run,7,2024,4
+Run,7,2024,5
+Run,8,2024,6
+Run,9,2024,7
+Run,7,2024,8
+Run,6,2024,9
+Run,7,2024,10
+Run,7,2024,11
+Run,4,2024,12
+Run,9,2025,1
+Run,6,2025,2
+Run,10,2025,3
+Run,7,2025,4
+Run,2,2025,5
+Run,1,2025,6
+Workout,9,2020,4
+Workout,7,2020,5
+Workout,9,2020,6
+Workout,12,2020,7
+Workout,7,2020,8
+Workout,6,2020,9
+Workout,8,2020,10
+Workout,7,2020,11
+Workout,4,2020,12
+Workout,4,2021,1
+Workout,6,2021,2
+Workout,3,2021,3
+Workout,6,2021,4
+Workout,1,2021,10
+Workout,4,2022,8
+Workout,7,2022,9
+Workout,2,2022,10
+Workout,9,2022,11
+Workout,5,2022,12
+Workout,4,2023,1
+Workout,1,2023,2
+Workout,1,2023,3
+Workout,1,2023,4
+Workout,7,2023,5
+Workout,2,2023,6
+Workout,11,2023,7
+Workout,11,2023,8
+Workout,5,2023,9
+Workout,8,2023,10
+Workout,1,2023,11
+Workout,3,2023,12
+Workout,4,2024,1
+Workout,1,2024,2
+Workout,7,2024,6
+Workout,9,2024,7
+Workout,3,2024,8
+Workout,5,2024,9
+Workout,10,2024,10
+Workout,7,2024,11
+Workout,5,2024,12
+Workout,11,2025,1
+Workout,9,2025,2
+Workout,8,2025,3
+Workout,7,2025,4
+Workout,8,2025,5
+Workout,3,2025,6
+Ride,2,2020,4
+Ride,1,2020,5
+Ride,1,2021,2
+Ride,3,2023,3
+Ride,1,2023,7
+Ride,2,2023,9
+Ride,1,2023,11
+Ride,1,2023,12
+Ride,2,2024,8
+Ride,3,2024,9
+Ride,11,2025,5
+Ride,1,2025,6
+Elliptical,2,2020,12
+Elliptical,2,2021,1
+Elliptical,2,2021,9
+Elliptical,1,2021,11
+Elliptical,1,2021,12
+Elliptical,1,2022,8
+Elliptical,2,2023,5
+Elliptical,1,2023,6
+Hike,1,2021,1
+Hike,1,2022,6
+Hike,4,2022,7
+Hike,3,2022,8
+Hike,1,2022,12
+Hike,1,2023,1
+Hike,1,2024,5
+Hike,1,2024,8
+Hike,1,2024,9
+Weight Training,2,2021,3
+Weight Training,1,2021,5
+Weight Training,3,2021,6
+Weight Training,2,2021,7
+Weight Training,2,2021,8
+Weight Training,3,2021,9
+Weight Training,5,2021,10
+Weight Training,6,2021,11
+Weight Training,2,2021,12
+Weight Training,2,2022,1
+Weight Training,4,2022,2
+Weight Training,8,2022,3
+Weight Training,8,2022,4
+Weight Training,5,2022,5
+Weight Training,2,2022,10
+Weight Training,2,2022,11
+Weight Training,3,2023,1
+Weight Training,4,2023,2
+Weight Training,7,2023,3
+Weight Training,10,2023,4
+Weight Training,4,2023,5
+Weight Training,2,2023,6
+Weight Training,2,2023,8
+Weight Training,1,2023,9
+Weight Training,2,2023,10
+Weight Training,6,2023,11
+Weight Training,4,2023,12
+Weight Training,7,2024,1
+Weight Training,10,2024,2
+Weight Training,8,2024,3
+Weight Training,10,2024,4
+Weight Training,9,2024,5
+Weight Training,2,2024,6
+Weight Training,4,2024,8
+Weight Training,4,2024,9
+Swim,1,2022,8
+Football (Soccer),1,2022,12

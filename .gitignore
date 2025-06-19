@@ -1,0 +1,10 @@
+__pycache__
+.venv
+.vercel
+.devcontainer
+.ipynb_checkpoints
+.streamlit
+.vscode
+venv
+INPUT
+OUTPUT

@@ -1,0 +1,11 @@
+pandas
+numpy
+geopandas
+streamlit
+streamlit-folium
+altair
+altair_saver
+vega_datasets
+folium
+vegafusion[embed]
+gpxpy
