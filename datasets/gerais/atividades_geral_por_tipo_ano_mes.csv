@@ -60,7 +60,8 @@ Walk,9,2025,3
 Walk,9,2025,4
 Walk,3,2025,5
 Walk,2,2025,6
-Walk,1,2025,7
+Walk,5,2025,7
+Walk,1,2025,8
 Run,1,2020,3
 Run,9,2020,4
 Run,9,2020,5
@@ -125,7 +126,8 @@ Run,10,2025,3
 Run,7,2025,4
 Run,2,2025,5
 Run,4,2025,6
-Run,1,2025,7
+Run,4,2025,7
+Run,2,2025,8
 Workout,9,2020,4
 Workout,7,2020,5
 Workout,9,2020,6
@@ -172,6 +174,8 @@ Workout,8,2025,3
 Workout,7,2025,4
 Workout,8,2025,5
 Workout,9,2025,6
+Workout,8,2025,7
+Workout,2,2025,8
 Ride,2,2020,4
 Ride,1,2020,5
 Ride,1,2021,2
@@ -184,6 +188,8 @@ Ride,2,2024,8
 Ride,3,2024,9
 Ride,11,2025,5
 Ride,1,2025,6
+Ride,2,2025,7
+Ride,1,2025,8
 Elliptical,2,2020,12
 Elliptical,2,2021,1
 Elliptical,2,2021,9
