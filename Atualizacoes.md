@@ -10,3 +10,15 @@
 - Dados Novos:
 1374 arquivos
 982 Arquivos CSV 
+
+## 29/01/2026
+
+- Dados Novos:
+1495 arquivos
+1052 Arquivos CSV 
+
+## xx/xx/20xx
+
+- Dados Novos:
+xx arquivos
+xx Arquivos CSV 

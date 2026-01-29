@@ -4,9 +4,9 @@
 
 set -e
 
-# Passo 1: Extrair arquivos .gz da pasta strava-activities
-cd strava-activities || exit 1
-echo "Extraindo arquivos .gz em strava-activities..."
+# Passo 1: Extrair arquivos .gz da pasta arquivos-atividades-strava
+cd arquivos-atividades-strava || exit 1
+echo "Extraindo arquivos .gz em arquivos-atividades-strava..."
 gunzip -v *.gz || true
 cd ..
 
@@ -23,10 +23,10 @@ if [ -f config/painel_config_geracao_dados.py ]; then
 fi
 
 # Passo 4: Copiar arquivos para processamento
-if [ -d strava-activities ]; then
-    echo "Copiando arquivos de strava-activities para processamento..."
-    cp -r strava-activities/*.gpx processamento
-    cp -r strava-activities/*.tcx processamento
+if [ -d arquivos-atividades-strava ]; then
+    echo "Copiando arquivos de arquivos-atividades-strava para processamento..."
+    cp -r arquivos-atividades-strava/*.gpx processamento
+    cp -r arquivos-atividades-strava/*.tcx processamento
 fi
 
 # Passo 5: Verificar arquivos de atividades

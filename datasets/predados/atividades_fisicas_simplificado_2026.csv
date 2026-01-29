@@ -1,0 +1,27 @@
+,Unnamed: 0,Activity ID,Activity Date,Activity Name,Activity Type,Activity Description,Elapsed Time,Distance,Max Heart Rate,Filename,Max Speed,Average Speed,Calories,Recovery,With Pet,Competition,Long Run,For a Cause,With Kid,Downhill Distance,data_ano,data_mes,dia_semana,tempo_min
+0,1469,16917010540,"Jan 2, 2026, 8:44:38 PM",Afternoon Walk,Walk,,2065,2.02,149.0,activities/18009922557.tcx.gz,2.233,1.621,320.0,,,,,,,,2026,1,Sexta,34.416666666666664
+1,1470,16917010571,"Jan 2, 2026, 9:19:18 PM",Evening Run,Run,,1337,3.02,189.0,activities/18009922667.tcx.gz,3.387,2.28,281.0,,,,,,,,2026,1,Sexta,22.28333333333333
+2,1471,16962461021,"Jan 5, 2026, 3:47:16 PM",Morning Workout,Workout,,3378,0.0,142.0,activities/18055880117.tcx.gz,0.0,0.0,378.0,,,,,,,,2026,1,Segunda,56.3
+3,1472,16962461194,"Jan 6, 2026, 10:20:41 PM",Evening Walk,Walk,,910,0.96,157.0,activities/18055880204.tcx.gz,4.557,1.446,121.0,,,,,,,,2026,1,Terca,15.166666666666666
+4,1473,16962461252,"Jan 6, 2026, 10:36:45 PM",Evening Run,Run,,1913,4.2,190.0,activities/18055880387.tcx.gz,4.016,2.391,390.0,,,,,,,,2026,1,Terca,31.883333333333333
+5,1474,16962461341,"Jan 6, 2026, 11:08:52 PM",Evening Walk,Walk,,531,0.66,138.0,activities/18055880461.tcx.gz,2.619,1.349,76.0,,,,,,,,2026,1,Terca,8.85
+6,1475,16979280499,"Jan 7, 2026, 9:58:45 PM",Afternoon Workout,Workout,,4559,0.0,149.0,activities/18072848880.tcx.gz,0.0,0.0,551.0,,,,,,,,2026,1,Quarta,75.98333333333333
+7,1476,17002868477,"Jan 10, 2026, 2:34:11 PM",Morning Workout,Workout,,3785,0.0,148.0,activities/18096659698.tcx.gz,0.0,0.0,543.0,,,,,,,,2026,1,Sabado,63.083333333333336
+8,1477,17005548395,"Jan 10, 2026, 8:23:24 PM",Afternoon Walk,Walk,,1569,2.43,146.0,activities/18099344063.tcx.gz,3.011,1.592,238.0,,,,,,,,2026,1,Sabado,26.15
+9,1478,17005548579,"Jan 10, 2026, 8:49:45 PM",Afternoon Run,Run,,1526,3.01,176.0,activities/18099344162.tcx.gz,3.417,2.088,296.0,,,,,,,,2026,1,Sabado,25.433333333333334
+10,1479,17034852517,"Jan 12, 2026, 8:47:00 PM",Lunch Workout,Workout,,3516,0.0,155.0,activities/18128987751.tcx.gz,0.0,0.0,478.0,,,,,,,,2026,1,Segunda,58.6
+11,1480,17071163934,"Jan 15, 2026, 9:13:29 PM",Evening Walk,Walk,,1943,2.15,146.0,activities/18165551652.tcx.gz,2.902,1.454,251.0,,,,,,,,2026,1,Quinta,32.38333333333333
+12,1481,17098623284,"Jan 16, 2026, 8:40:12 PM",Afternoon Walk,Walk,,2700,3.61,135.0,activities/18193342293.tcx.gz,3.774,1.474,352.0,,,,,,,,2026,1,Sexta,45.0
+13,1482,17098623301,"Jan 17, 2026, 7:01:03 PM",Afternoon Ride,Ride,,736,1.62,141.0,activities/18193342344.tcx.gz,4.35,2.519,102.0,,,,,,,,2026,1,Sabado,12.266666666666667
+14,1483,17098624920,"Jan 18, 2026, 9:33:22 PM",Evening Walk,Walk,,1917,2.17,160.0,activities/18193343986.tcx.gz,2.859,1.612,333.0,,,,,,,,2026,1,Domingo,31.95
+15,1484,17098624989,"Jan 18, 2026, 10:07:50 PM",Evening Run,Run,,2007,4.49,185.0,activities/18193344039.tcx.gz,6.584,2.496,377.0,,,,,,,,2026,1,Domingo,33.45
+16,1485,17109375237,"Jan 19, 2026, 9:39:38 PM",Evening Run,Run,,2612,5.55,188.0,activities/18204156434.tcx.gz,11.651,2.551,412.0,,,,,,,,2026,1,Segunda,43.53333333333333
+17,1486,17109375273,"Jan 19, 2026, 9:15:11 PM",Evening Walk,Walk,,1455,2.1,137.0,activities/18204156236.tcx.gz,2.398,1.552,193.0,,,,,,,,2026,1,Segunda,24.25
+18,1487,17143970098,"Jan 22, 2026, 10:05:46 PM",Caminhada ao entardecer,Walk,,1567,2.53,,activities/17143970098.gpx,8.467,1.648,221.0,,,,,,,,2026,1,Quinta,26.116666666666667
+19,1488,17144340816,"Jan 22, 2026, 10:32:21 PM",Corrida ao entardecer,Run,,2471,5.22,,activities/17144340816.gpx,8.98,2.202,456.0,,,,,,,,2026,1,Quinta,41.18333333333333
+20,1489,17144615368,"Jan 20, 2026, 10:17:21 PM",Afternoon Workout,Workout,,5367,0.0,146.0,activities/18239646128.tcx.gz,0.0,0.0,609.0,,,,,,,,2026,1,Terca,89.45
+21,1490,17199407683,"Jan 24, 2026, 9:33:45 PM",Afternoon Workout,Workout,,3325,0.0,128.0,activities/18294893328.tcx.gz,0.0,0.0,296.0,,,,,,,,2026,1,Sabado,55.41666666666666
+22,1491,17199407698,"Jan 24, 2026, 10:29:40 PM",Afternoon Workout,Workout,,71,0.0,86.0,activities/18294893361.tcx.gz,0.0,0.0,4.0,,,,,,,,2026,1,Sabado,1.1833333333333331
+23,1492,17199407950,"Jan 26, 2026, 9:28:23 PM",Afternoon Workout,Workout,,5722,0.0,135.0,activities/18294893530.tcx.gz,0.0,0.0,586.0,,,,,,,,2026,1,Segunda,95.36666666666666
+24,1493,17199408193,"Jan 27, 2026, 9:41:46 PM",Evening Walk,Walk,,1316,2.08,154.0,activities/18294893745.tcx.gz,2.547,1.605,194.0,,,,,,,,2026,1,Terca,21.933333333333334
+25,1494,17199408499,"Jan 27, 2026, 10:04:05 PM",Evening Run,Run,,2576,5.71,197.0,activities/18294894186.tcx.gz,7.883,2.58,469.0,,,,,,,,2026,1,Terca,42.93333333333333

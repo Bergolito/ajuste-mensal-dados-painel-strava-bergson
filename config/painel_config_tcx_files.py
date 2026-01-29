@@ -1,7 +1,9 @@
-import xml.etree.ElementTree as ET
 import os
+import re
 import pandas as pd
-import datetime
+import xml.etree.ElementTree as ET
+
+from pathlib import Path
 
 class TCXParser:
     """
@@ -90,8 +92,6 @@ def recupera_coordenadas_arquivos_tcx():
     de latitude e longitude e gera um arquivo CSV para cada arquivo TCX na pasta
     datasets/mapas.
     """
-    import os
-    import pandas as pd
     
     # Criar diretório de saída se não existir
     output_dir = "datasets/mapas"
@@ -178,15 +178,14 @@ def processar_arquivo_tcx_para_csv(input_dir, output_dir):
     Returns:
         int: Número de arquivos processados com sucesso
     """
-    import os
-    import pandas as pd
-    import xml.etree.ElementTree as ET
-    from pathlib import Path
-    import re
+
     
     # Criar diretório de saída se não existir
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     
+    log_file = "processamento/problemas_tcx.txt"
+    
+
     # Namespace padrão usado nos arquivos TCX da Garmin/Strava
     NAMESPACES = {
         'ns': 'http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2',
@@ -209,173 +208,179 @@ def processar_arquivo_tcx_para_csv(input_dir, output_dir):
     count_success = 0
     count_errors = 0
     
-    for tcx_file in arquivos_tcx:
-        try:
-            # Caminho completo para o arquivo TCX
-            tcx_path = os.path.join(input_dir, tcx_file)
-            
-            # Nome do arquivo sem extensão
-            base_name = os.path.splitext(tcx_file)[0]
-            
-            # Caminho para o arquivo CSV de saída
-            csv_path = os.path.join(output_dir, f"{base_name}.csv")
-            
-            # Ler o conteúdo do arquivo e corrigir problemas com a declaração XML
-            with open(tcx_path, 'r', encoding='utf-8') as f:
-                conteudo = f.read()
-            
-            # Remover espaços em branco e outros caracteres antes da declaração XML
-            # ou antes da tag raiz se não houver declaração XML
-            match_xml = re.search(r'<\?xml.*?\?>', conteudo)
-            if match_xml:
-                inicio = match_xml.start()
-            else:
-                # Se não encontrar declaração XML, procurar a primeira tag
-                match_tag = re.search(r'<\w+', conteudo)
-                if match_tag:
-                    inicio = match_tag.start()
+    with open(log_file, 'a', encoding='utf-8') as log_file:
+        for tcx_file in arquivos_tcx:
+            try:
+                log_file.write(f"\nNenhum ponto com coordenadas encontrado no arquivo:\n\n")
+                
+                # Caminho completo para o arquivo TCX
+                tcx_path = os.path.join(input_dir, tcx_file)
+                
+                # Nome do arquivo sem extensão
+                base_name = os.path.splitext(tcx_file)[0]
+                
+                # Caminho para o arquivo CSV de saída
+                csv_path = os.path.join(output_dir, f"{base_name}.csv")
+                
+                # Ler o conteúdo do arquivo e corrigir problemas com a declaração XML
+                with open(tcx_path, 'r', encoding='utf-8') as f:
+                    conteudo = f.read()
+                
+                # Remover espaços em branco e outros caracteres antes da declaração XML
+                # ou antes da tag raiz se não houver declaração XML
+                match_xml = re.search(r'<\?xml.*?\?>', conteudo)
+                if match_xml:
+                    inicio = match_xml.start()
                 else:
-                    raise Exception(f"Não foi possível encontrar o início do XML no arquivo {tcx_file}")
-            
-            # Se houver conteúdo indesejado antes do início do XML, remover
-            if inicio > 0:
-                conteudo_ajustado = conteudo[inicio:]
+                    # Se não encontrar declaração XML, procurar a primeira tag
+                    match_tag = re.search(r'<\w+', conteudo)
+                    if match_tag:
+                        inicio = match_tag.start()
+                    else:
+                        raise Exception(f"Não foi possível encontrar o início do XML no arquivo {tcx_file}")
                 
-                # Criar arquivo temporário com o conteúdo ajustado
-                temp_path = tcx_path + ".temp"
-                with open(temp_path, 'w', encoding='utf-8') as f:
-                    f.write(conteudo_ajustado)
-                
-                # Usar o arquivo temporário para o parsing
-                try:
-                    tree = ET.parse(temp_path)
-                    # Remover arquivo temporário após uso bem-sucedido
-                    os.remove(temp_path)
-                except Exception as e:
-                    # Se ainda falhar, tentar outra abordagem
-                    os.remove(temp_path)
-                    raise Exception(f"Erro no parsing do XML após correção: {str(e)}")
-            else:
-                # Se o XML já começa no início do arquivo, parse normal
-                tree = ET.parse(tcx_path)
-            
-            root = tree.getroot()
-            
-            # Lista para armazenar os dados de cada trackpoint
-            trackpoints_data = []
-            
-            # Extrair informações básicas da atividade
-            activity_element = root.find('.//ns:Activity', NAMESPACES)
-            
-            # Tipo de esporte (corrida, ciclismo, etc.)
-            sport_type = activity_element.attrib.get('Sport', 'Unknown') if activity_element is not None else 'Unknown'
-            
-            # Data e ID da atividade
-            activity_id = root.find('.//ns:Id', NAMESPACES)
-            activity_id_text = activity_id.text if activity_id is not None else 'Unknown'
-            
-            # Encontrar todos os trackpoints
-            trackpoints = root.findall('.//ns:Trackpoint', NAMESPACES)
-            
-            # Extrair dados de cada trackpoint
-            for trackpoint in trackpoints:
-                # Dados básicos
-                point_data = {
-                    'activity_id': activity_id_text,
-                    'sport_type': sport_type
-                }
-                
-                # Timestamp
-                time_elem = trackpoint.find('./ns:Time', NAMESPACES)
-                if time_elem is not None:
-                    point_data['timestamp'] = time_elem.text
-                
-                # Posição (latitude/longitude)
-                position = trackpoint.find('./ns:Position', NAMESPACES)
-                if position is not None:
-                    lat_elem = position.find('./ns:LatitudeDegrees', NAMESPACES)
-                    lon_elem = position.find('./ns:LongitudeDegrees', NAMESPACES)
+                # Se houver conteúdo indesejado antes do início do XML, remover
+                if inicio > 0:
+                    conteudo_ajustado = conteudo[inicio:]
                     
-                    if lat_elem is not None and lon_elem is not None:
-                        point_data['latitude'] = float(lat_elem.text)
-                        point_data['longitude'] = float(lon_elem.text)
-                
-                # Altitude
-                altitude_elem = trackpoint.find('./ns:AltitudeMeters', NAMESPACES)
-                if altitude_elem is not None:
-                    point_data['altitude'] = float(altitude_elem.text)
-                
-                # Distância
-                distance_elem = trackpoint.find('./ns:DistanceMeters', NAMESPACES)
-                if distance_elem is not None:
-                    point_data['distance'] = float(distance_elem.text)
-                
-                # Frequência cardíaca
-                heart_rate = trackpoint.find('.//ns:HeartRateBpm/ns:Value', NAMESPACES)
-                if heart_rate is not None:
-                    point_data['heart_rate'] = int(heart_rate.text)
-                
-                # Cadência
-                cadence = trackpoint.find('./ns:Cadence', NAMESPACES)
-                if cadence is not None:
-                    point_data['cadence'] = int(cadence.text)
-                
-                # Extensões (potência, etc.)
-                extensions = trackpoint.find('.//ns3:TPX', NAMESPACES)
-                if extensions is not None:
-                    # Potência (Watts)
-                    power = extensions.find('.//ns3:Watts', NAMESPACES)
-                    if power is not None:
-                        point_data['power'] = float(power.text)
+                    # Criar arquivo temporário com o conteúdo ajustado
+                    temp_path = tcx_path + ".temp"
+                    with open(temp_path, 'w', encoding='utf-8') as f:
+                        f.write(conteudo_ajustado)
                     
-                    # Velocidade
-                    speed = extensions.find('.//ns3:Speed', NAMESPACES)
-                    if speed is not None:
-                        point_data['speed'] = float(speed.text)
+                    # Usar o arquivo temporário para o parsing
+                    try:
+                        tree = ET.parse(temp_path)
+                        # Remover arquivo temporário após uso bem-sucedido
+                        os.remove(temp_path)
+                    except Exception as e:
+                        # Se ainda falhar, tentar outra abordagem
+                        os.remove(temp_path)
+                        raise Exception(f"Erro no parsing do XML após correção: {str(e)}")
+                else:
+                    # Se o XML já começa no início do arquivo, parse normal
+                    tree = ET.parse(tcx_path)
                 
-                # Adicionar ponto à lista se tiver pelo menos latitude e longitude
-                if 'latitude' in point_data and 'longitude' in point_data:
-                    trackpoints_data.append(point_data)
-            
-            # Verificar se existem trackpoints
-            if not trackpoints_data:
-                print(f"Nenhum ponto com coordenadas encontrado no arquivo {tcx_file}")
+                root = tree.getroot()
+                
+                # Lista para armazenar os dados de cada trackpoint
+                trackpoints_data = []
+                
+                # Extrair informações básicas da atividade
+                activity_element = root.find('.//ns:Activity', NAMESPACES)
+                
+                # Tipo de esporte (corrida, ciclismo, etc.)
+                sport_type = activity_element.attrib.get('Sport', 'Unknown') if activity_element is not None else 'Unknown'
+                
+                # Data e ID da atividade
+                activity_id = root.find('.//ns:Id', NAMESPACES)
+                activity_id_text = activity_id.text if activity_id is not None else 'Unknown'
+                
+                # Encontrar todos os trackpoints
+                trackpoints = root.findall('.//ns:Trackpoint', NAMESPACES)
+                
+                # Extrair dados de cada trackpoint
+                for trackpoint in trackpoints:
+                    # Dados básicos
+                    point_data = {
+                        'activity_id': activity_id_text,
+                        'sport_type': sport_type
+                    }
+                    
+                    # Timestamp
+                    time_elem = trackpoint.find('./ns:Time', NAMESPACES)
+                    if time_elem is not None:
+                        point_data['timestamp'] = time_elem.text
+                    
+                    # Posição (latitude/longitude)
+                    position = trackpoint.find('./ns:Position', NAMESPACES)
+                    if position is not None:
+                        lat_elem = position.find('./ns:LatitudeDegrees', NAMESPACES)
+                        lon_elem = position.find('./ns:LongitudeDegrees', NAMESPACES)
+                        
+                        if lat_elem is not None and lon_elem is not None:
+                            point_data['latitude'] = float(lat_elem.text)
+                            point_data['longitude'] = float(lon_elem.text)
+                    
+                    # Altitude
+                    altitude_elem = trackpoint.find('./ns:AltitudeMeters', NAMESPACES)
+                    if altitude_elem is not None:
+                        point_data['altitude'] = float(altitude_elem.text)
+                    
+                    # Distância
+                    distance_elem = trackpoint.find('./ns:DistanceMeters', NAMESPACES)
+                    if distance_elem is not None:
+                        point_data['distance'] = float(distance_elem.text)
+                    
+                    # Frequência cardíaca
+                    heart_rate = trackpoint.find('.//ns:HeartRateBpm/ns:Value', NAMESPACES)
+                    if heart_rate is not None:
+                        point_data['heart_rate'] = int(heart_rate.text)
+                    
+                    # Cadência
+                    cadence = trackpoint.find('./ns:Cadence', NAMESPACES)
+                    if cadence is not None:
+                        point_data['cadence'] = int(cadence.text)
+                    
+                    # Extensões (potência, etc.)
+                    extensions = trackpoint.find('.//ns3:TPX', NAMESPACES)
+                    if extensions is not None:
+                        # Potência (Watts)
+                        power = extensions.find('.//ns3:Watts', NAMESPACES)
+                        if power is not None:
+                            point_data['power'] = float(power.text)
+                        
+                        # Velocidade
+                        speed = extensions.find('.//ns3:Speed', NAMESPACES)
+                        if speed is not None:
+                            point_data['speed'] = float(speed.text)
+                    
+                    # Adicionar ponto à lista se tiver pelo menos latitude e longitude
+                    if 'latitude' in point_data and 'longitude' in point_data:
+                        trackpoints_data.append(point_data)
+                
+                # Verificar se existem trackpoints
+                if not trackpoints_data:
+                    log_file.write(f"{tcx_file}\n")
+
+                    count_errors += 1
+                    continue
+                
+                # Criar DataFrame e salvar como CSV
+                df = pd.DataFrame(trackpoints_data)
+                
+                # Calcular campos derivados
+                if len(df) > 0:
+                    # Adicionar colunas adicionais de análise
+                    if 'timestamp' in df.columns:
+                        df['timestamp'] = pd.to_datetime(df['timestamp'])
+                        
+                        # Calcular duração (segundos desde o início)
+                        start_time = df['timestamp'].min()
+                        df['duration_seconds'] = (df['timestamp'] - start_time).dt.total_seconds()
+                    
+                    # Calcular inclinação (gradiente) se tivermos altitude e distância
+                    if 'altitude' in df.columns and 'distance' in df.columns:
+                        df['altitude_diff'] = df['altitude'].diff()
+                        df['distance_diff'] = df['distance'].diff()
+                        # Evitar divisão por zero
+                        mask = df['distance_diff'] > 0
+                        if mask.any():
+                            df.loc[mask, 'gradient'] = (df.loc[mask, 'altitude_diff'] / df.loc[mask, 'distance_diff']) * 100
+                
+                # Salvar como CSV
+                df.to_csv(csv_path, index=False)
+                
+                count_success += 1
+                print(f"Arquivo processado com sucesso: {tcx_file} -> {csv_path}")
+                print(f"  - {len(trackpoints_data)} pontos de coordenadas extraídos")
+                
+            except Exception as e:
+                print(f"Erro ao processar o arquivo {tcx_file}: {str(e)}")
                 count_errors += 1
-                continue
-            
-            # Criar DataFrame e salvar como CSV
-            df = pd.DataFrame(trackpoints_data)
-            
-            # Calcular campos derivados
-            if len(df) > 0:
-                # Adicionar colunas adicionais de análise
-                if 'timestamp' in df.columns:
-                    df['timestamp'] = pd.to_datetime(df['timestamp'])
-                    
-                    # Calcular duração (segundos desde o início)
-                    start_time = df['timestamp'].min()
-                    df['duration_seconds'] = (df['timestamp'] - start_time).dt.total_seconds()
-                
-                # Calcular inclinação (gradiente) se tivermos altitude e distância
-                if 'altitude' in df.columns and 'distance' in df.columns:
-                    df['altitude_diff'] = df['altitude'].diff()
-                    df['distance_diff'] = df['distance'].diff()
-                    # Evitar divisão por zero
-                    mask = df['distance_diff'] > 0
-                    if mask.any():
-                        df.loc[mask, 'gradient'] = (df.loc[mask, 'altitude_diff'] / df.loc[mask, 'distance_diff']) * 100
-            
-            # Salvar como CSV
-            df.to_csv(csv_path, index=False)
-            
-            count_success += 1
-            print(f"Arquivo processado com sucesso: {tcx_file} -> {csv_path}")
-            print(f"  - {len(trackpoints_data)} pontos de coordenadas extraídos")
-            
-        except Exception as e:
-            print(f"Erro ao processar o arquivo {tcx_file}: {str(e)}")
-            count_errors += 1
-    
+
+        log_file.close()
+
     print(f"\nProcessamento concluído!")
     print(f"Total de arquivos: {len(arquivos_tcx)}")
     print(f"Processados com sucesso: {count_success}")

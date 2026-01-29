@@ -4,7 +4,6 @@
 import pandas as pd
 import zipfile
 import os
-
 from datetime import datetime
 from painel_strava_funcoes import *
 
@@ -14,7 +13,7 @@ from painel_strava_funcoes import *
 
 # ==================================
 def salvar_arquivos_atividades_completos_anos():
-  df_atividades_todos = pd.read_csv('datasets/atividades.csv', sep=',', encoding="ISO-8859-1")
+  df_atividades_todos = pd.read_csv('datasets/atividades.csv', sep=',', encoding="UTF-8")
 
   df2 = df_atividades_todos.copy()
   df2['data_ano'] = df_atividades_todos['Activity Date'].apply(retorna_ano_data)
@@ -60,6 +59,7 @@ def salvar_arquivos_atividades_simplificados_anos():
   df_atividades_2023 = pd.read_csv('datasets/predados/atividades_fisicas_2023.csv', sep=',', encoding="ISO-8859-1")
   df_atividades_2024 = pd.read_csv('datasets/predados/atividades_fisicas_2024.csv', sep=',', encoding="ISO-8859-1")
   df_atividades_2025 = pd.read_csv('datasets/predados/atividades_fisicas_2025.csv', sep=',', encoding="ISO-8859-1")
+  df_atividades_2026 = pd.read_csv('datasets/predados/atividades_fisicas_2026.csv', sep=',', encoding="ISO-8859-1")
   df_atividades_todos = pd.read_csv('datasets/predados/atividades_fisicas_todos.csv', sep=',', encoding="ISO-8859-1")
 
   lista_dfs_anos = [
@@ -68,7 +68,8 @@ def salvar_arquivos_atividades_simplificados_anos():
     (2022,df_atividades_2022),
     (2023,df_atividades_2023),
     (2024,df_atividades_2024),
-    (2025,df_atividades_2025)
+    (2025,df_atividades_2025),
+    (2026,df_atividades_2026)
   ] 
 
   nome_arquivo = f'datasets/predados/atividades_fisicas_simplificado_todos.csv'
@@ -108,6 +109,7 @@ def salvar_arquivos_somatorios_anos():
     df_atividades_2023 = pd.read_csv('datasets/predados/atividades_fisicas_simplificado_2023.csv', sep=',', encoding="ISO-8859-1")
     df_atividades_2024 = pd.read_csv('datasets/predados/atividades_fisicas_simplificado_2024.csv', sep=',', encoding="ISO-8859-1")
     df_atividades_2025 = pd.read_csv('datasets/predados/atividades_fisicas_simplificado_2025.csv', sep=',', encoding="ISO-8859-1")
+    df_atividades_2026 = pd.read_csv('datasets/predados/atividades_fisicas_simplificado_2026.csv', sep=',', encoding="ISO-8859-1")
 
     lista_dfs_anos = [
         (2020,df_atividades_2020),
@@ -115,7 +117,8 @@ def salvar_arquivos_somatorios_anos():
         (2022,df_atividades_2022),
         (2023,df_atividades_2023),
         (2024,df_atividades_2024),
-        (2025,df_atividades_2025)
+        (2025,df_atividades_2025),
+        (2026,df_atividades_2026)
     ]
 
     for item in lista_dfs_anos:
@@ -175,14 +178,9 @@ def convert_tcx_to_gpx(file_to_convert):
     """
     Converte um arquivo TCX para GPX.
     """
-    # Importa a biblioteca tcx2gpx
-    from tcx2gpx.tcx2gpx import TCX2GPX
-
     # Cria um objeto TCX2GPX e converte o arquivo
     gps_object = TCX2GPX(tcx_path=file_to_convert)
     gps_object.convert()
-
-    from tcx2gpx.tcx2gpx import TCX2GPX
 
     gps_object = TCX2GPX(tcx_path=file_to_convert)
     gps_object.convert()
